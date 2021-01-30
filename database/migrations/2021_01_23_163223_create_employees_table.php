@@ -16,7 +16,7 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->text('date_of_birth');
+            $table->date('date_of_birth');
             $table->string('job_title');
             $table->enum('employee_status', ['active', 'inactive', 'left', 'pension']);
             $table->jsonb('profiles');

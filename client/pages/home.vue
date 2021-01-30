@@ -1,7 +1,7 @@
 <template>
   <card :title="$t('home')">
     {{ $t('you_are_logged_in') }}
-    <router-link to="/profile">Lihat profil</router-link>
+    <router-link to="/profile">View Profile</router-link>
   </card>
 </template>
 
