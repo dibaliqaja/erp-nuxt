@@ -64,13 +64,22 @@ export default {
     async save() {
       this.loading  = true
       let response  = (await axios.patch('employee/' + this.$route.params.id, this.form)).data
+      if (response.success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'This Employee Updated!',
+          confirmButtonText: 'OK'
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: response.message,
+          confirmButtonText: 'OK'
+        })
+      }
       this.loading  = false
-      Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: 'This Employee Updated!',
-        confirmButtonText: 'OK'
-      })
     },
   },
 

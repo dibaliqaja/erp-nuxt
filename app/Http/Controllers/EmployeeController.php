@@ -42,26 +42,50 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            Employee::create([
-                'name'            => $request->name,
-                'job_title'       => $request->job_title,
-                'employee_status' => $request->employee_status,
-                'date_of_birth'   => $request->date_of_birth,
-                'profiles'        => '{}',
-                'unit_id'         => 1
-            ]);
-
-            return response()->json([
-                'success' => true,
-                'status'  => 200
-            ]);
-        } catch (\Throwable $th) {
+        if (empty($request->name)) {
             return response()->json([
                 'success' => false,
-                'message' => $th
+                'message' => "Nama wajib diisi"
             ]);
         }
+        if (strlen($request->name) < 4) {
+            return response()->json([
+                'success' => false,
+                'message' => "Nama minimal 4 huruf"
+            ]);
+        }
+        if (empty($request->job_title)) {
+            return response()->json([
+                'success' => false,
+                'message' => "Jabatan wajib diisi"
+            ]);
+        }
+        if (empty($request->employee_status)) {
+            return response()->json([
+                'success' => false,
+                'message' => "Status Pekerjaan wajib diisi"
+            ]);
+        }
+        if (empty($request->date_of_birth)) {
+            return response()->json([
+                'success' => false,
+                'message' => "Tanggal lahir wajib diisi"
+            ]);
+        }
+
+        Employee::create([
+            'name'            => $request->name,
+            'job_title'       => $request->job_title,
+            'employee_status' => $request->employee_status,
+            'date_of_birth'   => $request->date_of_birth,
+            'profiles'        => '{}',
+            'unit_id'         => 1
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'status'  => 200
+        ]);
     }
 
     /**
@@ -99,28 +123,52 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        try {
-            $data = [
-                'name'            => $request->name,
-                'job_title'       => $request->job_title,
-                'employee_status' => $request->employee_status,
-                'date_of_birth'   => $request->date_of_birth,
-                'profiles'        => '{}',
-                'unit_id'         => 1
-            ];
-
-            $employee->update($data);
-
-            return response()->json([
-                'success' => true,
-                'status'  => 200,
-            ]);
-        } catch (\Throwable $th) {
+        if (empty($request->name)) {
             return response()->json([
                 'success' => false,
-                'message' => $th
+                'message' => "Nama wajib diisi"
             ]);
         }
+        if (strlen($request->name) < 4) {
+            return response()->json([
+                'success' => false,
+                'message' => "Nama minimal 4 huruf"
+            ]);
+        }
+        if (empty($request->job_title)) {
+            return response()->json([
+                'success' => false,
+                'message' => "Jabatan wajib diisi"
+            ]);
+        }
+        if (empty($request->employee_status)) {
+            return response()->json([
+                'success' => false,
+                'message' => "Status Pekerjaan wajib diisi"
+            ]);
+        }
+        if (empty($request->date_of_birth)) {
+            return response()->json([
+                'success' => false,
+                'message' => "Tanggal lahir wajib diisi"
+            ]);
+        }
+
+        $data = [
+            'name'            => $request->name,
+            'job_title'       => $request->job_title,
+            'employee_status' => $request->employee_status,
+            'date_of_birth'   => $request->date_of_birth,
+            'profiles'        => '{}',
+            'unit_id'         => 1
+        ];
+
+        $employee->update($data);
+
+        return response()->json([
+            'success' => true,
+            'status'  => 200,
+        ]);
     }
 
     /**
@@ -131,19 +179,12 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        try {
-            $employee->delete();
+        $employee->delete();
 
-            return response()->json([
-                'success' => true,
-                'status'  => 200,
-                'data'    => $employee
-            ]);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'success' => false,
-                'message'  => $th
-            ]);
-        }
+        return response()->json([
+            'success' => true,
+            'status'  => 200,
+            'data'    => $employee
+        ]);
     }
 }

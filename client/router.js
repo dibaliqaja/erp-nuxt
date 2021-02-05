@@ -23,6 +23,9 @@ const routes = [
   { path: '/employee/create', name: 'employee.create', component: page('employee/create.vue') },
   { path: '/employee/update/:id', name: 'employee.update', component: page('employee/update/_id.vue') },
 
+  { path: '/presence', name: 'presence.index', component: page('presence/index.vue') },
+  { path: '/presence/create', name: 'presence.create', component: page('presence/create.vue') },
+
   {
     path: '/settings',
     component: page('settings/index.vue'),

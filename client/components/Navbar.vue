@@ -21,6 +21,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/employee">Employee</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/presence">Presence</a>
+          </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">

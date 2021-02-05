@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('employee', EmployeeController::class)->except([
         'create', 'edit'
     ]);
+    Route::resource('presence', PresenceController::class);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

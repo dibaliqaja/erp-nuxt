@@ -19,7 +19,7 @@
                   Experienced for approximately more 1 year and always try to continue to improve my skills.
                   And I love being a Software Engineer 👨‍💻.
                 </span>
-                <p class="text-center m-3">© 2020 All rights reserved • With ❤️ from Indonesia</p>
+                <p class="text-center m-3">© 2021 All rights reserved • With ❤️ from Indonesia</p>
               </div>
             </div>
             <div class="col-md-6">

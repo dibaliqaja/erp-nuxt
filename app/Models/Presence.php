@@ -28,4 +28,11 @@ class Presence extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    protected $casts = [
+        'metadata' => 'array',
+        'latitude' => 'float',
+        'longitude' => 'float',
+    ];
+
 }

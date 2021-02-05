@@ -65,13 +65,22 @@ export default {
     async save() {
       this.loading  = true
       let response  = (await axios.post('employee', this.form)).data
+      if (response.success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'New Employee Created!',
+          confirmButtonText: 'OK'
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: response.message,
+          confirmButtonText: 'OK'
+        })
+      }
       this.loading  = false
-      Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: 'New Employee Created!',
-        confirmButtonText: 'OK'
-      })
       this.form.name = ''
       this.form.date_of_birth = ''
       this.form.job_title = ''
