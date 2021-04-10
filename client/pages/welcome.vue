@@ -33,7 +33,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  layout: 'simple',
+  layout: 'sb-admin-2',
 
   data: () => ({
     title: process.env.appName

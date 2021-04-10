@@ -23,6 +23,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
+      { rel: 'stylesheet', href: '/sb-admin-2.min.css' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
@@ -48,8 +49,14 @@ module.exports = {
   ],
 
   modules: [
-    '@nuxtjs/router'
+    '@nuxtjs/router',
+    '@nuxtjs/sentry'
   ],
+
+  sentry: {
+    dsn: 'https://64077185fcbc402e9814432c1c615851@o568608.ingest.sentry.io/5713832',
+    config: {},
+  },
 
   build: {
     extractCSS: true
