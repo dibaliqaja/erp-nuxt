@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\WorkScheduleController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,9 @@ Route::group(['middleware' => 'auth:api'], function () {
         'create', 'edit'
     ]);
     Route::resource('presence', PresenceController::class);
+    Route::resource('work-schedule', WorkScheduleController::class)->except([
+        'create', 'edit'
+    ]);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

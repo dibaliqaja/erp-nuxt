@@ -26,6 +26,10 @@ const routes = [
   { path: '/presence', name: 'presence.index', component: page('presence/index.vue') },
   { path: '/presence/create', name: 'presence.create', component: page('presence/create.vue') },
 
+  { path: '/work-schedule', name: 'work-schedule.index', component: page('work-schedule/index.vue') },
+  { path: '/work-schedule/create', name: 'work-schedule.create', component: page('work-schedule/create.vue') },
+  { path: '/work-schedule/update/:id', name: 'work-schedule.update', component: page('work-schedule/update/_id.vue') },
+
   {
     path: '/settings',
     component: page('settings/index.vue'),
