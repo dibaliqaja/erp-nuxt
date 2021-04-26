@@ -12,7 +12,7 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $data  = Employee::get();
         $count = Employee::count();
@@ -177,8 +177,15 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy(Request $request, Employee $employee)
     {
+        $user = $request->user();
+        if (!$user->getAllPermissions()->where('name','employee.delete')->first()) {
+            return response()->json([
+                'success' => false,
+            ]);
+        }
+
         $employee->delete();
 
         return response()->json([

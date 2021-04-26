@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             UnitSeeder::class,
             UserSeeder::class,
             EmployeeSeeder::class,
-            WorkScheduleSeeder::class
+            WorkScheduleSeeder::class,
+            RolePermissionSeeder::class,
         ]);
     }
 }

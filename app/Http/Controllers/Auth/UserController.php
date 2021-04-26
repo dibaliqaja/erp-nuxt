@@ -15,6 +15,10 @@ class UserController extends Controller
      */
     public function current(Request $request)
     {
-        return response()->json($request->user());
+        $user = $request->user();
+        $user->all_permissions = $user->getAllPermissions()->pluck('name');
+        return response()->json($user);
+        
+        // return response()->json($request->user());
     }
 }
