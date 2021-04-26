@@ -41,6 +41,9 @@ import Swal from 'sweetalert2'
 
 export default {
   middleware: 'auth',
+  meta: {
+    permission: 'employee.create'
+  },
 
   head () {
     return { title: "New Employee Form" }

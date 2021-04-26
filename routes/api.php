@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployeeActivityController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\WorkScheduleController;
 use App\Http\Controllers\Settings\PasswordController;
@@ -36,6 +37,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('employee', EmployeeController::class)->except([
         'create', 'edit'
     ]);
+    
+    Route::get('employee-activity/calendar', [EmployeeActivityController::class, 'calendar']);
+    Route::resource('employee-activity', EmployeeActivityController::class)->except([
+        'create', 'show', 'edit', 'update', 'destroy'
+    ]);
+
     Route::resource('presence', PresenceController::class);
     Route::resource('work-schedule', WorkScheduleController::class)->except([
         'create', 'edit'

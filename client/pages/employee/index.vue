@@ -43,6 +43,9 @@ import Swal from 'sweetalert2'
 
 export default {
   middleware: 'auth',
+  meta: {
+    permission: 'employee.list'
+  },
 
   head () {
     return { title: "Employees Data" }

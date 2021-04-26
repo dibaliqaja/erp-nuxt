@@ -12,6 +12,10 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/vue-fontawesome": "^2.0.0",
+    "@fullcalendar/daygrid": "^5.6.0",
+    "@fullcalendar/interaction": "^5.6.0",
+    "@fullcalendar/timegrid": "^5.6.0",
+    "@fullcalendar/vue": "^5.6.0",
     "@nuxtjs/router": "^1.5.0",
     "@nuxtjs/sentry": "^5.0.3",
     "@sentry/tracing": "^6.2.5",
@@ -25,7 +29,8 @@
     "popper.js": "^1.16.1",
     "sweetalert2": "^10.10.4",
     "vform": "^1.0.1",
-    "vue-i18n": "^8.22.2"
+    "vue-i18n": "^8.22.2",
+    "vue2-timepicker": "^1.1.6"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.12.1",

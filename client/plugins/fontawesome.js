@@ -3,7 +3,7 @@ import { library, config } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import {
-  faUser, faLock, faSignOutAlt, faCog, faList, faLaughWink, faSearch, faBell, faEnvelope, faTachometerAlt, faWrench
+  faUser, faLock, faSignOutAlt, faCog, faList, faLaughWink, faSearch, faBell, faEnvelope, faTachometerAlt, faWrench, faClock, faCalendarAlt
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -18,7 +18,7 @@ config.autoAddCss = false
 
 library.add(
   faUser, faLock, faSignOutAlt, faCog, faGithub, faList, faLaughWink, faSearch, faBell, faFileAlt,
-  faEnvelope, faTachometerAlt, faWrench
+  faEnvelope, faTachometerAlt, faWrench, faClock, faCalendarAlt
 )
 
 Vue.component('Fa', FontAwesomeIcon)

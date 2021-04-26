@@ -94,37 +94,38 @@ export default {
       this.presences = response.data
     },
 
-    watch: {
-      filterMonth(newVal) {
-        this.refreshData()
-      },
-      filterYear(newVal) {
-        this.refreshData()
-      },
+    async deleteData(employee) {
+      let result = await Swal.fire({
+        icon: 'warning',
+        title: 'Are you sure?',
+        text: 'Employee Name: ' + employee.name,
+        showCancelButton: true,
+        confirmButtonText: 'OK',
+        cancelButtonText: 'CANCEL',
+      })
+
+      if (result.isConfirmed) {
+        let response = (await axios.delete('employee/' + employee.id)).data
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'Employee Deleted!',
+          confirmButtonText: 'OK',
+        })
+        await this.refreshData()
+      }
     }
+  },
 
-    // async deleteData(employee) {
-    //   let result = await Swal.fire({
-    //     icon: 'warning',
-    //     title: 'Are you sure?',
-    //     text: 'Employee Name: ' + employee.name,
-    //     showCancelButton: true,
-    //     confirmButtonText: 'OK',
-    //     cancelButtonText: 'CANCEL',
-    //   })
-
-    //   if (result.isConfirmed) {
-    //     let response = (await axios.delete('employee/' + employee.id)).data
-    //     Swal.fire({
-    //       icon: 'success',
-    //       title: 'Success',
-    //       text: 'Employee Deleted!',
-    //       confirmButtonText: 'OK',
-    //     })
-    //     await this.refreshData()
-    //   }
-    // }
-  }
+  watch: {
+    filterMonth(newVal) {
+      this.refreshData()
+    },
+    filterYear(newVal) {
+      this.refreshData()
+    },
+  },
+  
 };
 </script>
 
