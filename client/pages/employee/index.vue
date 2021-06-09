@@ -27,8 +27,8 @@
               <span class="badge badge-dark" v-if="employee.employee_status === 'pension'">Pension</span>
             </td>
             <td>
-              <router-link :to="'/employee/update/' + employee.id" class="btn btn-sm btn-info">Update</router-link>
-              <a @click="deleteData(employee)" href="#" class="btn btn-sm btn-danger">Delete</a>
+              <router-link :to="'/employee/update/' + employee.id" class="btn btn-sm btn-info">Update</router-link>              
+              <a @click="deleteData(employee)" href="#" v-if="user && user.all_permissions.indexOf('employee.delete') > -1" class="btn btn-sm btn-danger">Delete</a>
             </td>
           </tr>
         </tbody>
@@ -38,14 +38,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
 export default {
   middleware: 'auth',
-  meta: {
-    permission: 'employee.list'
-  },
+  // meta: {
+  //   permission: 'employee.list'
+  // },
+  computed: mapGetters({
+    user: 'auth/user'
+  }),
 
   head () {
     return { title: "Employees Data" }

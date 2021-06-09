@@ -17,8 +17,7 @@ class UserController extends Controller
     {
         $user = $request->user();
         $user->all_permissions = $user->getAllPermissions()->pluck('name');
-        return response()->json($user);
         
-        // return response()->json($request->user());
+        return response()->json($user);
     }
 }

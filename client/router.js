@@ -9,6 +9,7 @@ const page = path => () => import(`~/pages/${path}`).then(m => m.default || m)
 const routes = [
   { path: '/', name: 'welcome', component: page('welcome.vue') },
 
+  { path: '/unauthorized', name: 'unauthorized', component: page('auth/unauthorized.vue') },
   { path: '/login', name: 'login', component: page('auth/login.vue') },
   { path: '/register', name: 'register', component: page('auth/register.vue') },
   { path: '/password/reset', name: 'password.request', component: page('auth/password/email.vue') },
@@ -19,9 +20,9 @@ const routes = [
   { path: '/home', name: 'home', component: page('home.vue') },
   { path: '/profile', name: 'profile', component: page('profile.vue') },
 
-  { path: '/employee', name: 'employee.index', component: page('employee/index.vue') },
-  { path: '/employee/create', name: 'employee.create', component: page('employee/create.vue') },
-  { path: '/employee/update/:id', name: 'employee.update', component: page('employee/update/_id.vue') },
+  { path: '/employee', name: 'employee.index', component: page('employee/index.vue'), meta: {permission: 'employee.list'} },
+  { path: '/employee/create', name: 'employee.create', component: page('employee/create.vue'), meta: {permission: 'employee.create'} },
+  { path: '/employee/update/:id', name: 'employee.update', component: page('employee/update/_id.vue'), meta: {permission: 'employee.edit'} },
 
   { path: '/presence', name: 'presence.index', component: page('presence/index.vue') },
   { path: '/presence/create', name: 'presence.create', component: page('presence/create.vue') },
