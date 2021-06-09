@@ -1,0 +1,42 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+version: "3.1"
+services:
+
+    redis:
+      image: redis:alpine
+      container_name: erp-nuxt-redis
+
+    mysql:
+      image: mysql:8.0
+      container_name: erp-nuxt-mysql
+      working_dir: /application
+      volumes:
+        - .:/application
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=erp
+        - MYSQL_USER=erp
+        - MYSQL_PASSWORD=erp
+      ports:
+        - "9026:3306"
+
+    webserver:
+      image: nginx:alpine
+      container_name: erp-nuxt-webserver
+      working_dir: /application
+      volumes:
+          - .:/application
+          - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+       - "9024:80"
+
+    php-fpm:
+      build: phpdocker/php-fpm
+      container_name: erp-nuxt-php-fpm
+      working_dir: /application
+      volumes:
+        - .:/application
+        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+
