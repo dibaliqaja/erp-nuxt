@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EmployeeActivityController;
 use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\WorkScheduleController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
@@ -44,6 +45,10 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
 
     Route::resource('presence', PresenceController::class);
+
+    Route::resource('salary', SalaryController::class);
+    Route::get('salary/export', [SalaryController::class, 'export']);
+
     Route::resource('work-schedule', WorkScheduleController::class)->except([
         'create', 'edit'
     ]);

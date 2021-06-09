@@ -33,6 +33,8 @@ const routes = [
   { path: '/work-schedule/create', name: 'work-schedule.create', component: page('work-schedule/create.vue') },
   { path: '/work-schedule/update/:id', name: 'work-schedule.update', component: page('work-schedule/update/_id.vue') },
 
+  { path: '/salary', name: 'salary.index', component: page('salary/index.vue') },
+
   {
     path: '/settings',
     component: page('settings/index.vue'),

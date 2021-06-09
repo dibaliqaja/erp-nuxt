@@ -13,6 +13,7 @@
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0",
+        "maatwebsite/excel": "^3.1",
         "sentry/sentry-laravel": "^2.4",
         "spatie/laravel-permission": "^4.0",
         "tymon/jwt-auth": "^1.0.1"

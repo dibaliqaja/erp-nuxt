@@ -25,6 +25,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+
+        $year = date('Y', strtotime('-1 month'));
+        $month = date('m', strtotime('-1 month'));
+
+        $schedule->command('calculate:monthlysalary ' . $year . ' ' . $month)->monthlyOn(1, '12:00');
     }
 
     /**

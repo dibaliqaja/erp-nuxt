@@ -25,6 +25,9 @@
             <a class="nav-link" href="/presence">Presence</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/salary">Salary</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/activity/calendar">Activity Report</a>
           </li>
           <!-- <li class="nav-item">

@@ -50,7 +50,8 @@ module.exports = {
 
   modules: [
     '@nuxtjs/router',
-    '@nuxtjs/sentry'
+    '@nuxtjs/sentry',
+    '@nuxtjs/google-analytics'
   ],
 
   sentry: {
