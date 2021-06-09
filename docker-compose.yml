@@ -40,3 +40,39 @@ services:
         - .:/application
         - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
 
+    minio1:
+      image: minio/minio
+      restart: always
+      volumes:
+        - ./data:/data
+      ports:
+        - "9005:9000"
+      environment:
+        MINIO_ACCESS_KEY: LOP1235123
+        MINIO_SECRET_KEY: KOI10239QW342
+      command: server /data
+      healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+        interval: 30s
+        timeout: 20s
+        retries: 3
+    nginx:
+      image: nginx:latest
+      restart: always
+      volumes:
+        - ./nginx.conf:/etc/nginx/nginx.conf:ro
+        - ./data:/var/www:ro
+      ports:
+        - "9006:9006"
+        
+    nuxt:
+      image: node:12.10
+      restart: unless-stopped
+      ports:
+        - "9023:3000"
+      working_dir: /src
+      volumes:
+        - .:/src
+      command:
+        "/bin/sh -c 'yarn && yarn build && yarn start'"
+      
