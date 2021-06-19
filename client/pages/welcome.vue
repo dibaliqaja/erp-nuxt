@@ -18,12 +18,12 @@
 
     <div class="text-center">
       <div class="title mb-4">
-        <span class="laravel">Laravel</span><span class="nuxt">Nuxt</span>
+        <span class="laravel">ERP-</span><span class="nuxt">Nuxt</span>
         <!-- {{ title }} -->
       </div>
 
       <div class="links">
-        <a href="https://github.com/cretueusebiu/laravel-nuxt">github.com/cretueusebiu/laravel-nuxt</a>
+        <a href="https://github.com/dibaliqaja/erp-nuxt" target="blank">github.com/dibaliqaja/erp-nuxt</a>
       </div>
     </div>
   </div>

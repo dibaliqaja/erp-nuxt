@@ -15,7 +15,7 @@
       <div id="navbarToggler" class="collapse navbar-collapse">
         <ul class="navbar-nav">
           <locale-dropdown />
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="/profile">Profile</a>
           </li>
           <li class="nav-item">
@@ -30,7 +30,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/activity/calendar">Activity Report</a>
           </li>
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="/work-schedule">Work Schedule</a>
           </li> -->
         </ul>

@@ -1,31 +1,33 @@
 <template>
-  <card title="Report Your Activity">
-    Date: {{ form.date }}
-    <br>
-    <form @submit.prevent="save">
-      <div class="form-group row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">
-          <fa icon="clock" fixed-width /> Time
-        </label>
-        <div class="col-sm-10">
-          <vue-timepicker :minute-interval="5" format="HH:MM" close-on-complete v-model="form.time_start"></vue-timepicker>
-          s.d
-          <vue-timepicker :minute-interval="5" format="HH:MM" close-on-complete v-model="form.time_end"></vue-timepicker>
+  <div class="container">
+    <card title="Report Your Activity">
+      Date: {{ form.date }}
+      <br>
+      <form @submit.prevent="save">
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">
+            <fa icon="clock" fixed-width /> Time
+          </label>
+          <div class="col-sm-10">
+            <vue-timepicker v-model="form.time_start" :minute-interval="5" format="HH:MM" close-on-complete />
+            s.d
+            <vue-timepicker v-model="form.time_end" :minute-interval="5" format="HH:MM" close-on-complete />
+          </div>
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">
-          <fa icon="calendar-alt" fixed-width /> Activities
-        </label>
-        <div class="col-sm-10">
-          <textarea class="form-control" v-model="form.notes"></textarea>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">
+            <fa icon="calendar-alt" fixed-width /> Activities
+          </label>
+          <div class="col-sm-10">
+            <textarea v-model="form.notes" class="form-control" />
+          </div>
         </div>
-      </div>
-      <button class="btn btn-info" :disabled="loading">
-        Save
-      </button>
-    </form>
-  </card>
+        <button class="btn btn-info" :disabled="loading">
+          Save
+        </button>
+      </form>
+    </card>
+  </div>
 </template>
 
 <script>
@@ -35,20 +37,14 @@ import VueTimepicker from 'vue2-timepicker'
 import 'vue2-timepicker/dist/VueTimepicker.css'
 
 export default {
-  middleware: "auth",
-
   components: {
     VueTimepicker
   },
 
-  head() {
-    return { title: "Report Your Activity" };
-  },
+  layout: 'sb-admin-2',
+  middleware: 'auth',
 
-  async asyncData(context) {
-  },
-
-  data() {
+  data () {
     return {
       form: {
         latitude: '',
@@ -57,44 +53,57 @@ export default {
         time_start: '',
         time_end: '',
         date: null,
-        notes: null,
+        notes: null
       },
       currentDate: null,
       currentTime: null,
-      loading: false,
+      loading: false
     }
   },
 
+  head () {
+    return { title: 'Report Your Activity' }
+  },
+
+  created () {
+    this.getLocation()
+    this.form.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+    this.form.date = this.$route.params.date
+
+    this.updateDate()
+    this.updateTime()
+  },
+
   methods: {
-    updateDate() {
-      let today = new Date();
-      this.currentDate = today.getFullYear()+'-'+(today.getMonth()+1+'').padStart(2,'0')+'-'+(today.getDate() + '').padStart(2,'0');
+    updateDate () {
+      const today = new Date()
+      this.currentDate = today.getFullYear() + '-' + (today.getMonth() + 1 + '').padStart(2, '0') + '-' + (today.getDate() + '').padStart(2, '0')
 
       setTimeout(this.updateDate, 1000)
     },
 
-    updateTime() {
-      let today = new Date();
-      this.currentTime = (today.getHours()+'').padStart(2,'0') + ":" + (today.getMinutes()+'').padStart(2,'0') + ":" + (today.getSeconds()+'').padStart(2,'0');
-      
-      setTimeout(this.updateTime, 1000-(new Date).getMilliseconds())
+    updateTime () {
+      const today = new Date()
+      this.currentTime = (today.getHours() + '').padStart(2, '0') + ':' + (today.getMinutes() + '').padStart(2, '0') + ':' + (today.getSeconds() + '').padStart(2, '0')
+
+      setTimeout(this.updateTime, 1000 - (new Date()).getMilliseconds())
     },
 
-    getLocation() {
+    getLocation () {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
           this.form.latitude = position.coords.latitude
           this.form.longitude = position.coords.longitude
-        });
+        })
       } else {
-        this.form.latitude = 0;
-        this.form.longitude = 0;
+        this.form.latitude = 0
+        this.form.longitude = 0
       }
     },
 
-    async save() {
+    async save () {
       this.loading = true
-      let resp = (await axios.post('employee-activity', this.form)).data
+      await axios.post('employee-activity', this.form).data
       this.loading = false
       this.form.notes = ''
       this.form.time_start = ''
@@ -103,18 +112,9 @@ export default {
         icon: 'success',
         title: 'Success',
         text: 'Data saved successfully',
-        confirmButtonText: 'OK',
+        confirmButtonText: 'OK'
       })
-    },
-  },
-
-  created() {
-    this.getLocation()
-    this.form.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-    this.form.date = this.$route.params.date    
-
-    this.updateDate()
-    this.updateTime()
+    }
   }
-};
+}
 </script>

@@ -7,6 +7,7 @@
             <div class="col-md-6">
               <div class="card mx-auto p-2 rounded border border-secondary">
                 <div class="mx-auto">
+                  <h3 v-if="user.photo_url == null">Photo Not Found</h3>
                   <img :src="user.photo_url" alt="photo" style="width: 200px" class="p-2 rounded-circle img-responsive">
                 </div>
                 <h3 class="font-weight-bold mx-auto mt-2">{{ user.name }}</h3>
@@ -129,10 +130,11 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  layout: 'sb-admin-2',
 
   computed: mapGetters({
     user: 'auth/user'
-  }),
+  })
 
 }
 </script>
