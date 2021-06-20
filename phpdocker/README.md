@@ -20,7 +20,7 @@ Once you're done, simply `cd` to your project and run `docker-compose up -d`. Th
 
 ## Services exposed outside your environment ##
 
-You can access your application via **`localhost`**, if you're running the containers directly, or through **``** when run on a vm. nginx and mailhog both respond to any hostname, in case you want to add your own hostname on your `/etc/hosts` 
+You can access your application via **`localhost`**. Mailhog and nginx both respond to any hostname, in case you want to add your own hostname on your `/etc/hosts`
 
 Service|Address outside containers
 ------|---------|-----------
@@ -53,7 +53,7 @@ Redis|redis|6379 (default)
 
 # Application file permissions #
 
-As in all server environments, your application needs the correct file permissions to work proberly. You can change the files throught the container, so you won't care if the user exists or has the same ID on your host.
+As in all server environments, your application needs the correct file permissions to work properly. You can change the files throughout the container, so you won't care if the user exists or has the same ID on your host.
 
 `docker-compose exec php-fpm chown -R www-data:www-data /application/public`
 

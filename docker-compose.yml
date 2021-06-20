@@ -5,12 +5,14 @@ version: "3.1"
 services:
 
     redis:
+      restart: always
       image: redis:alpine
-      container_name: erp-nuxt-redis
+      container_name: erp-redis
 
     mysql:
+      restart: always
       image: mysql:8.0
-      container_name: erp-nuxt-mysql
+      container_name: erp-mysql
       working_dir: /application
       volumes:
         - .:/application
@@ -23,8 +25,9 @@ services:
         - "9026:3306"
 
     webserver:
+      restart: always
       image: nginx:alpine
-      container_name: erp-nuxt-webserver
+      container_name: erp-webserver
       working_dir: /application
       volumes:
           - .:/application
@@ -33,13 +36,14 @@ services:
        - "9024:80"
 
     php-fpm:
+      restart: always
       build: phpdocker/php-fpm
-      container_name: erp-nuxt-php-fpm
+      container_name: erp-php-fpm
       working_dir: /application
       volumes:
         - .:/application
         - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
-
+    
     nuxt:
       image: node:10.20
       restart: unless-stopped
@@ -67,6 +71,7 @@ services:
         interval: 30s
         timeout: 20s
         retries: 3
+
     nginx:
       image: nginx:latest
       restart: always
@@ -75,5 +80,3 @@ services:
         - ./data:/var/www:ro
       ports:
         - "9006:9006"
-    
-      
