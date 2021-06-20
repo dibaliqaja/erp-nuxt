@@ -22,10 +22,10 @@
       <a class="nav-link" href="/presence"><fa icon="file-alt" class="fa-sm fa-fw mr-2 text-gray-400" fixed-width /><b>Presence</b></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/salary"><fa icon="sticky-note" class="fa-sm fa-fw mr-2 text-gray-400" fixed-width /><b>Salary</b></a>
+      <a class="nav-link" href="/activity/calendar"><fa icon="list" class="fa-sm fa-fw mr-2 text-gray-400" fixed-width /><b>Activity Report</b></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/activity/calendar"><fa icon="list" class="fa-sm fa-fw mr-2 text-gray-400" fixed-width /><b>Activity Report</b></a>
+      <a class="nav-link" href="/salary"><fa icon="sticky-note" class="fa-sm fa-fw mr-2 text-gray-400" fixed-width /><b>Salary</b></a>
     </li>
   </ul>
   <!-- End of Sidebar -->

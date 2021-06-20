@@ -28,10 +28,6 @@
               <checkbox v-model="remember" name="remember">
                 {{ $t('remember_me') }}
               </checkbox>
-
-              <router-link :to="{ name: 'password.request' }" class="small ml-auto my-auto">
-                {{ $t('forgot_password') }}
-              </router-link>
             </div>
           </div>
 
@@ -41,9 +37,6 @@
               <v-button :loading="form.busy">
                 {{ $t('login') }}
               </v-button>
-
-              <!-- GitHub Login Button -->
-              <login-with-github />
             </div>
           </div>
         </form>
@@ -78,8 +71,8 @@ export default {
       try {
         const response = await this.form.post('/login')
         data = response.data
-      } catch (e) {
-        return
+      } catch (error) {
+        return error.response.data.message
       }
 
       // Save the token.

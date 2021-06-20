@@ -11,11 +11,11 @@ const routes = [
 
   { path: '/unauthorized', name: 'unauthorized', component: page('auth/unauthorized.vue') },
   { path: '/login', name: 'login', component: page('auth/login.vue') },
-  { path: '/register', name: 'register', component: page('auth/register.vue') },
-  { path: '/password/reset', name: 'password.request', component: page('auth/password/email.vue') },
-  { path: '/password/reset/:token', name: 'password.reset', component: page('auth/password/reset.vue') },
-  { path: '/email/verify/:id', name: 'verification.verify', component: page('auth/verification/verify.vue') },
-  { path: '/email/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
+  // { path: '/register', name: 'register', component: page('auth/register.vue') },
+  // { path: '/password/reset', name: 'password.request', component: page('auth/password/email.vue') },
+  // { path: '/password/reset/:token', name: 'password.reset', component: page('auth/password/reset.vue') },
+  // { path: '/email/verify/:id', name: 'verification.verify', component: page('auth/verification/verify.vue') },
+  // { path: '/email/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
 
   { path: '/home', name: 'home', component: page('home.vue') },
   { path: '/profile', name: 'profile', component: page('profile.vue') },
@@ -30,9 +30,9 @@ const routes = [
   { path: '/activity/create/:date?', name: 'activity.create', component: page('activity/create.vue') },
   { path: '/activity/calendar', name: 'activity.calendar', component: page('activity/calendar.vue') },
 
-  { path: '/work-schedule', name: 'work-schedule.index', component: page('work-schedule/index.vue') },
-  { path: '/work-schedule/create', name: 'work-schedule.create', component: page('work-schedule/create.vue') },
-  { path: '/work-schedule/update/:id', name: 'work-schedule.update', component: page('work-schedule/update/_id.vue') },
+  // { path: '/work-schedule', name: 'work-schedule.index', component: page('work-schedule/index.vue') },
+  // { path: '/work-schedule/create', name: 'work-schedule.create', component: page('work-schedule/create.vue') },
+  // { path: '/work-schedule/update/:id', name: 'work-schedule.update', component: page('work-schedule/update/_id.vue') },
 
   { path: '/salary', name: 'salary.index', component: page('salary/index.vue') },
 

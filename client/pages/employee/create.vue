@@ -83,13 +83,13 @@ export default {
           confirmButtonText: 'OK'
         })
       }
-      this.loading  = false
+      this.loading = false
       this.form.name = ''
       this.form.date_of_birth = ''
       this.form.job_title = ''
       this.form.employee_status = ''
-    },
-  },
+    }
+  }
 
 };
 </script>

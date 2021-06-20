@@ -9,9 +9,9 @@
             <fa icon="clock" fixed-width /> Time
           </label>
           <div class="col-sm-10">
-            <vue-timepicker v-model="form.time_start" :minute-interval="5" format="HH:MM" close-on-complete />
+            <vue-timepicker v-model="form.time_start" :minute-interval="5" format="HH:mm" close-on-complete />
             s.d
-            <vue-timepicker v-model="form.time_end" :minute-interval="5" format="HH:MM" close-on-complete />
+            <vue-timepicker v-model="form.time_end" :minute-interval="5" format="HH:mm" close-on-complete />
           </div>
         </div>
         <div class="form-group row">
@@ -35,6 +35,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import VueTimepicker from 'vue2-timepicker'
 import 'vue2-timepicker/dist/VueTimepicker.css'
+import Form from 'vform'
 
 export default {
   components: {
@@ -44,22 +45,20 @@ export default {
   layout: 'sb-admin-2',
   middleware: 'auth',
 
-  data () {
-    return {
-      form: {
-        latitude: '',
-        longitude: '',
-        timezone: '',
-        time_start: '',
-        time_end: '',
-        date: null,
-        notes: null
-      },
-      currentDate: null,
-      currentTime: null,
-      loading: false
-    }
-  },
+  data: () => ({
+    form: new Form({
+      latitude: '',
+      longitude: '',
+      timezone: '',
+      time_start: '',
+      time_end: '',
+      date: null,
+      notes: null
+    }),
+    currentDate: null,
+    currentTime: null,
+    loading: false
+  }),
 
   head () {
     return { title: 'Report Your Activity' }
@@ -103,17 +102,26 @@ export default {
 
     async save () {
       this.loading = true
-      await axios.post('employee-activity', this.form).data
+      const response = (await axios.post('employee-activity', this.form)).data
+      if (response.success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'Data saved succesfully!',
+          confirmButtonText: 'OK'
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: response.message,
+          confirmButtonText: 'OK'
+        })
+      }
       this.loading = false
       this.form.notes = ''
       this.form.time_start = ''
       this.form.time_end = ''
-      Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: 'Data saved successfully',
-        confirmButtonText: 'OK'
-      })
     }
   }
 }

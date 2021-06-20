@@ -116,7 +116,6 @@ export default {
 
     handleDateSelect (selectInfo) {
       if (selectInfo.allDay) {
-        // console.log('selectInfo', selectInfo)
         this.fetchDailyEvents(selectInfo.startStr)
       } else {
         const title = prompt('Enter a description of the activity')

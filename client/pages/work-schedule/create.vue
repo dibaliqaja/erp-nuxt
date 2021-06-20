@@ -60,8 +60,8 @@ export default {
 
   methods: {
     async save() {
-      this.loading  = true
-      let response  = (await axios.post('work-schedule', this.form)).data
+      this.loading = true
+      const response = (await axios.post('work-schedule', this.form)).data
       if (response.success) {
         Swal.fire({
           icon: 'success',
@@ -77,7 +77,7 @@ export default {
           confirmButtonText: 'OK'
         })
       }
-      this.loading  = false
+      this.loading = false
       this.form.checkin_time = ''
       this.form.break_start_time = ''
       this.form.break_end_time = ''

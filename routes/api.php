@@ -46,8 +46,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::resource('presence', PresenceController::class);
 
-    Route::resource('salary', SalaryController::class);
-    Route::get('salary/export', [SalaryController::class, 'export']);
+    Route::get('salary', [SalaryController::class, 'index'])->name('salary.index');
+    Route::get('salary/export', [SalaryController::class, 'export'])->name('salary.export');
 
     Route::resource('work-schedule', WorkScheduleController::class)->except([
         'create', 'edit'
@@ -56,14 +56,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 Route::group(['middleware' => 'guest:api'], function () {
     Route::post('login', [LoginController::class, 'login']);
-    Route::post('register', [RegisterController::class, 'register']);
-
-    Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
-    Route::post('password/reset', [ResetPasswordController::class, 'reset']);
-
-    Route::post('email/verify/{user}', [VerificationController::class, 'verify'])->name('verification.verify');
-    Route::post('email/resend', [VerificationController::class, 'resend']);
-
+    
     Route::post('oauth/{driver}', [OAuthController::class, 'redirect']);
     Route::get('oauth/{driver}/callback', [OAuthController::class, 'handleCallback'])->name('oauth.callback');
 });

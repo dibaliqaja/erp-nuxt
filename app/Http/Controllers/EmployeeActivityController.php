@@ -85,6 +85,13 @@ class EmployeeActivityController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
+
+        if (empty($request->notes)) {
+            return response()->json([
+                'success' => false,
+                'message' => "Activities wajib diisi"
+            ]);
+        }
         
         $model = new EmployeeActivity;
         $model->employee_id = $user->employee_id;

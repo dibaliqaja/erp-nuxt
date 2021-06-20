@@ -22,14 +22,14 @@
               <td>{{ employee.job_title }}</td>
               <td>{{ employee.date_of_birth }}</td>
               <td>
-                <span class="badge badge-success" v-if="employee.employee_status === 'active'">Active</span>
-                <span class="badge badge-warning" v-if="employee.employee_status === 'inactive'">Inactive</span>
-                <span class="badge badge-light" v-if="employee.employee_status === 'left'">Left</span>
-                <span class="badge badge-dark" v-if="employee.employee_status === 'pension'">Pension</span>
+                <span v-if="employee.employee_status === 'active'" class="badge badge-success">Active</span>
+                <span v-if="employee.employee_status === 'inactive'" class="badge badge-warning">Inactive</span>
+                <span v-if="employee.employee_status === 'left'" class="badge badge-light">Left</span>
+                <span v-if="employee.employee_status === 'pension'" class="badge badge-dark">Pension</span>
               </td>
               <td>
-                <router-link :to="'/employee/update/' + employee.id" class="btn btn-sm btn-info">Update</router-link>              
-                <a @click="deleteData(employee)" href="#" v-if="user && user.all_permissions.indexOf('employee.delete') > -1" class="btn btn-sm btn-danger">Delete</a>
+                <router-link :to="'/employee/update/' + employee.id" class="btn btn-sm btn-info">Update</router-link>
+                <a v-if="user && user.all_permissions.indexOf('employee.delete') > -1" href="#" class="btn btn-sm btn-danger" @click="deleteData(employee)">Delete</a>
               </td>
             </tr>
           </tbody>
@@ -47,57 +47,53 @@ import Swal from 'sweetalert2'
 export default {
   layout: 'sb-admin-2',
   middleware: 'auth',
-  // meta: {
-  //   permission: 'employee.list'
-  // },
+
+  async asyncData () {
+    const response = (await axios.get('employee')).data
+    const employees = response.data
+    const count = response.count
+
+    return {
+      employees,
+      count
+    }
+  },
+  head () {
+    return { title: 'Employees Data' }
+  },
+
   computed: mapGetters({
     user: 'auth/user'
   }),
 
-  head () {
-    return { title: "Employees Data" }
-  },
-
-  async asyncData(context) {
-    let response  = (await axios.get('employee')).data
-    let employees = response.data
-    let count     = response.count
-
-    return {
-      employees,
-      count,
-    }
-  },
-
   methods: {
-    async refreshData() {
-      let response = (await axios.get('employee')).data
+    async refreshData () {
+      const response = (await axios.get('employee')).data
       this.employees = response.data
       this.count = response.count
     },
 
-    async deleteData(employee) {
-      let result = await Swal.fire({
+    async deleteData (employee) {
+      const result = await Swal.fire({
         icon: 'warning',
         title: 'Are you sure?',
         text: 'Employee Name: ' + employee.name,
         showCancelButton: true,
         confirmButtonText: 'OK',
-        cancelButtonText: 'CANCEL',
+        cancelButtonText: 'CANCEL'
       })
 
       if (result.isConfirmed) {
-        let response = (await axios.delete('employee/' + employee.id)).data
+        await axios.delete('employee/' + employee.id).data
         Swal.fire({
           icon: 'success',
           title: 'Success',
           text: 'Employee Deleted!',
-          confirmButtonText: 'OK',
+          confirmButtonText: 'OK'
         })
         await this.refreshData()
       }
     }
   }
-};
+}
 </script>
-

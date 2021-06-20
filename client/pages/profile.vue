@@ -131,6 +131,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   layout: 'sb-admin-2',
+  middleware: 'auth',
 
   computed: mapGetters({
     user: 'auth/user'

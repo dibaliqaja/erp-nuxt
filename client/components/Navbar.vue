@@ -14,7 +14,6 @@
 
       <div id="navbarToggler" class="collapse navbar-collapse">
         <ul class="navbar-nav">
-          <locale-dropdown />
           <!-- <li class="nav-item">
             <a class="nav-link" href="/profile">Profile</a>
           </li>
@@ -64,11 +63,6 @@
                 {{ $t('login') }}
               </router-link>
             </li>
-            <li class="nav-item">
-              <router-link :to="{ name: 'register' }" class="nav-link" active-class="active">
-                {{ $t('register') }}
-              </router-link>
-            </li>
           </template>
         </ul>
       </div>
@@ -78,13 +72,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import LocaleDropdown from './LocaleDropdown'
 
 export default {
-  components: {
-    LocaleDropdown
-  },
-
   data: () => ({
     appName: process.env.appName
   }),
