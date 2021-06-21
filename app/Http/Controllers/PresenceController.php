@@ -80,7 +80,7 @@ class PresenceController extends Controller
                 'success' => true,
             ]);
         } catch (\Throwable $th) {
-            dd($th);
+            return $th;
         }
 
     }
