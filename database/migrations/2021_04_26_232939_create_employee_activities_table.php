@@ -20,9 +20,9 @@ class CreateEmployeeActivitiesTable extends Migration
             $table->time('time_start');
             $table->time('time_end');
             $table->string('timezone');
-            $table->float('latitude');
-            $table->float('longitude');
-            $table->jsonb('metadata');
+            $table->float('latitude')->nullable();
+            $table->float('longitude')->nullable();
+            $table->jsonb('metadata')->nullable();
             $table->text('notes');
             $table->softDeletes();
             $table->timestamps();
