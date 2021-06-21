@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => ['auth:api', 'cors']], function () {
     Route::post('logout', [LoginController::class, 'logout']);
 
     Route::get('user', [UserController::class, 'current']);
