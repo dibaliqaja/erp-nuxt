@@ -18,9 +18,9 @@ class CreatePresencesTable extends Migration
             $table->date('date')->index();
             $table->time('time');
             $table->string('timezone');
-            $table->float('latitude');
-            $table->float('longitude');
-            $table->jsonb('metadata');
+            $table->float('latitude')->nullable();
+            $table->float('longitude')->nullable();
+            $table->jsonb('metadata')->nullable();
             $table->foreignId('employee_id')->index();
             $table->softDeletes();
             $table->timestamps();
